@@ -1,0 +1,135 @@
+//=================================================================
+// Tooltips
+//=================================================================
+
+// Settings
+//-----------------------------------------------------------------
+
+// ("color name", "background color", "text color")
+$tooltip-colors: (
+	(light, rgba(255, 255, 255, 0.8), #444),
+);
+
+// CSS Triangle
+//-----------------------------------------------------------------
+
+@mixin triangle(
+	$position: top, 
+	$color: rgba(0, 0, 0, 0.75),
+	$size: 0.5rem
+) {
+	&:after {
+		content:'';
+		position: absolute;
+		width: 0;
+		height: 0;
+		margin-left: -$size;
+		@if $position == top {
+			top: 100%;
+			left: 50%;
+			border-left: solid $size transparent;
+			border-right: solid $size transparent;
+			border-top: solid $size $color;
+		} @else if $position == bottom {
+			bottom: 100%;
+			left: 50%;
+			border-left: solid $size transparent;
+			border-right: solid $size transparent;
+			border-bottom: solid $size $color;
+		} @else if $position == left {
+			top: 50%;
+			right: -$size;
+			transform: translateY(-50%);
+			border-top: solid $size transparent;
+			border-bottom: solid $size transparent;
+			border-left: solid $size $color;
+		} @else if $position == right {
+			top: 50%;
+			right: 100%;
+			transform: translateY(-50%);
+			border-top: solid $size transparent;
+			border-bottom: solid $size transparent;
+			border-right: solid $size $color;
+		}
+	}
+}
+
+// Config
+//-----------------------------------------------------------------
+
+$tooltip-positions: (
+	top, 
+	bottom, 
+	left, 
+	right
+);
+		
+// Tooltip
+//-----------------------------------------------------------------
+
+[data-tooltip] {
+		
+	position: relative;
+	cursor: pointer;	
+	
+	@at-root .tooltip-content {
+		position: absolute;
+		display: inline-block;
+		max-width: 500px;
+		white-space: pre;
+		transition: 0.4s;
+		// Appearance
+		padding: 1em;
+		border-radius: 0.25em;
+		color: white;
+		background-color: rgba(0, 0, 0, 0.75);
+		// Font reset
+		font-size: 1rem;
+		text-transform: none;
+		font-weight: normal;
+		// Hidden by default
+		opacity: 0;
+		visibility: hidden;
+		// Show when parent component is hovered
+        [data-tooltip]:hover & {
+			opacity: 1;
+			visibility: visible;
+        }
+		// Positions
+		@each $tooltip-position in $tooltip-positions {
+			[class*="tooltip-wrapper-"][class*="-#{$tooltip-position}"] & {
+				#{$tooltip-position}: -1rem;
+				@include triangle(#{$tooltip-position});
+				@if $tooltip-position == top {
+					transform: translateX(-50%) translateY(-100%);
+				} @else if $tooltip-position == bottom {
+					transform: translateX(-50%) translateY(100%);
+				} @else if $tooltip-position == left {
+					top: 50%;
+					transform: translateX(-100%) translateY(-50%);
+				} @else if $tooltip-position == right {
+					top: 50%;
+					transform: translateX(100%) translateY(-50%);
+				}
+			}	
+		}
+		// Colors
+		@each $tooltip-color in $tooltip-colors {
+			$namespace: nth($tooltip-color, 1);
+			$color: nth($tooltip-color, 2);
+			$text: nth($tooltip-color, 3);
+			[class*="tooltip-wrapper-"][class*="-#{$namespace}"] & {
+				color: $text;
+				background: $color;
+				@each $position in $tooltip-positions {
+					@at-root .tooltip-wrapper-#{$position}-#{$namespace} .tooltip-content {
+						&:after {
+							border-#{$position}-color: $color !important;
+						}
+					}			
+				}
+			}
+		}
+	}
+
+} // tooltip
