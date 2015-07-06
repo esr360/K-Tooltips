@@ -160,9 +160,6 @@ $tooltip-positions: (
 		// Custom Styles
 		@each $tooltip-style in $tooltip-styles {
 		 	$custom-style: nth($tooltip-style, 1);
-			$custom-key: nth($tooltip-style, 1);
-			$custom-value: nth($tooltip-style, 2);
-			@debug $custom-key;
 			[class*="tooltip-wrapper"][class*="-#{$custom-style}"] & {
 				@each $position in $tooltip-positions {
 					@at-root .tooltip-wrapper-#{$position}-#{$custom-style} .tooltip-content {
@@ -173,8 +170,10 @@ $tooltip-positions: (
 				}
 				$tooltip-options: map-remove($tooltip-options, "position", "distance", "arrow-size");
 				@each $tooltip-option in $tooltip-options {
-					@if map-has-key(map-get($tooltip-styles, $custom-style), $tooltip-key) {
-						#{$tooltip-key}: #{$tooltip-value};
+					$custom-key: nth($tooltip-option, 1);
+					$custom-value: map-get(map-get($tooltip-styles, $custom-style), $custom-key);
+					@if map-has-key(map-get($tooltip-styles, $custom-style), $custom-key) {
+						#{$custom-key}: #{$custom-value};
 					}
 				}
 			}	
