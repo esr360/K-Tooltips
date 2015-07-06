@@ -10,7 +10,7 @@
 			
 			var defaults = {  
 				position : "top",
-				style    : "light"
+				style    : "default"
 			};  
 			
 			var options = $.extend(defaults, options);	
