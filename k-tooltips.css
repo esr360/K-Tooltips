@@ -2,17 +2,21 @@
   position: relative;
   cursor: pointer;
 }
+[class*="tooltip-wrapper-"] {
+  text-align: center;
+}
 .tooltip-content {
   position: absolute;
   display: inline-block;
-  max-width: 500px;
-  white-space: pre;
-  transition: 0.4s;
+  white-space: pre-wrap;
   padding: 1em;
+  max-width: 500px;
+  transition: 0.4s;
+  z-index: 9999;
   border-radius: 0.25em;
   color: white;
   background-color: rgba(0, 0, 0, 0.75);
-  font-size: 1rem;
+  font-size: 1em;
   text-transform: none;
   font-weight: normal;
   opacity: 0;
@@ -33,12 +37,12 @@
   position: absolute;
   width: 0;
   height: 0;
-  margin-left: -0.5rem;
+  margin-left: -0.5em;
   top: 100%;
   left: 50%;
-  border-left: solid 0.5rem transparent;
-  border-right: solid 0.5rem transparent;
-  border-top: solid 0.5rem rgba(0, 0, 0, 0.75);
+  border-left: solid 0.5em transparent;
+  border-right: solid 0.5em transparent;
+  border-top: solid 0.5em rgba(0, 0, 0, 0.75);
 }
 [class*="tooltip-wrapper-"][class*="-bottom"] .tooltip-content {
   bottom: -1rem;
@@ -51,12 +55,12 @@
   position: absolute;
   width: 0;
   height: 0;
-  margin-left: -0.5rem;
+  margin-left: -0.5em;
   bottom: 100%;
   left: 50%;
-  border-left: solid 0.5rem transparent;
-  border-right: solid 0.5rem transparent;
-  border-bottom: solid 0.5rem rgba(0, 0, 0, 0.75);
+  border-left: solid 0.5em transparent;
+  border-right: solid 0.5em transparent;
+  border-bottom: solid 0.5em rgba(0, 0, 0, 0.75);
 }
 [class*="tooltip-wrapper-"][class*="-left"] .tooltip-content {
   left: -1rem;
@@ -70,15 +74,15 @@
   position: absolute;
   width: 0;
   height: 0;
-  margin-left: -0.5rem;
+  margin-left: -0.5em;
   top: 50%;
-  right: -0.5rem;
+  right: -0.5em;
   -webkit-transform: translateY(-50%);
       -ms-transform: translateY(-50%);
           transform: translateY(-50%);
-  border-top: solid 0.5rem transparent;
-  border-bottom: solid 0.5rem transparent;
-  border-left: solid 0.5rem rgba(0, 0, 0, 0.75);
+  border-top: solid 0.5em transparent;
+  border-bottom: solid 0.5em transparent;
+  border-left: solid 0.5em rgba(0, 0, 0, 0.75);
 }
 [class*="tooltip-wrapper-"][class*="-right"] .tooltip-content {
   right: -1rem;
@@ -92,15 +96,15 @@
   position: absolute;
   width: 0;
   height: 0;
-  margin-left: -0.5rem;
+  margin-left: -0.5em;
   top: 50%;
   right: 100%;
   -webkit-transform: translateY(-50%);
       -ms-transform: translateY(-50%);
           transform: translateY(-50%);
-  border-top: solid 0.5rem transparent;
-  border-bottom: solid 0.5rem transparent;
-  border-right: solid 0.5rem rgba(0, 0, 0, 0.75);
+  border-top: solid 0.5em transparent;
+  border-bottom: solid 0.5em transparent;
+  border-right: solid 0.5em rgba(0, 0, 0, 0.75);
 }
 [class*="tooltip-wrapper-"][class*="-light"] .tooltip-content {
   color: #444;

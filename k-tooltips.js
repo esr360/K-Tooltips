@@ -10,7 +10,7 @@
 			
 			var defaults = {  
 				position : "top",
-				color    : "dark"
+				style    : "default"
 			};  
 			
 			var options = $.extend(defaults, options);	
@@ -19,10 +19,10 @@
 				
 				var $content = $(this).attr("data-tooltip");			
 				var $position = options.position;		
-				var $color = options.color;
+				var $style = options.style;
 				
 				$(this).append(
-					$("<div class='tooltip-wrapper-" + $position + "-" + $color + "'><div class='tooltip-content'>"+ $content +"</div></div>")
+					$("<div class='tooltip-wrapper-" + $position + "-" + $style + "'><div class='tooltip-content'>"+ $content +"</div></div>")
 				);
 				
 			});
@@ -32,8 +32,3 @@
 	});
 
 }( jQuery ));
-
-$("[data-tooltip]").tooltip({
-  position : "left",
-  color    : "light"
-});

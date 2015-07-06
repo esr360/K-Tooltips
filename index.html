@@ -1,0 +1,163 @@
+<!doctype html>
+
+<html>
+	
+	<head>
+		
+	    <meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	    <title>K-Tooltips - A simple & lightweight tooltip solution.</title>
+	    <meta name="description" content="A simple & lightweight tooltip solution.">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <meta name="HandheldFriendly" content="True">
+	    <meta name="MobileOptimized" content="320">
+	
+	    <!-- Stylesheet -->
+	    <link rel="stylesheet" href="k-tooltips.css">
+		
+	    <!-- Js -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	    <script src="k-tooltips.js"></script>
+		
+		<style>
+			body {
+				font-family: Arial;
+				padding: 1rem;
+			}
+			a {
+				color: #6d3b81;
+			}
+			.logo {
+				max-width: 75%;
+			}
+			.demo {
+				background: rgba(0,0,0,0.2);
+				padding: 0.5em;
+				border-radius: 0.25em;
+				margin-bottom: 1em;
+			}
+			.page-button {
+				background: #8f60a1;
+				border-radius: 0.25rem;
+				display: inline-block;
+				color: white;
+				font-size: 0.9rem;
+				text-decoration: none;
+				padding: 0.4rem 0.6rem;
+				margin-left: 0.5rem;
+				position: relative;
+				top: -1px;
+			}
+			.subtitle {
+				color: #777;
+				font-weight: normal;
+			}
+			.container {
+				width: 1200px;
+				max-width: 95%;
+				margin: auto;
+			}
+			h6 {
+				font-size: 1rem;
+				color: #777;
+				margin: 1rem 0;
+			}
+			hr {
+				margin: 2rem 0;
+				border-color: rgba(0,0,0,0.2);
+			}
+			code {
+				padding: 0.2rem;
+				background-color: rgba(0,0,0,0.04);
+				border-radius: 0.25rem;
+			}
+			.EnlighterJSWrapper {
+				margin-bottom: 1rem !important;
+			}
+			.EnlighterJSWrapper ol.EnlighterJS, 
+			.EnlighterJSWrapper ul.EnlighterJS {
+				margin-bottom: 0;
+			}
+		</style>
+		
+	</head>
+	
+	<body>
+		
+		<div class="container main-container">
+
+            <a href="https://github.com/esr360/Kayzen-GS" target="blank">
+				<img class="logo" src="https://raw.githubusercontent.com/esr360/Kayzen-GS/gh-pages/logo-small.png" alt="Kayzen GS" title="Kayzen GS Logo">
+            </a>
+
+			<h3 class="subtitle">				
+				K-Tooltips - A simple & lightweight tooltip solution.
+				<a class="page-button" href="https://github.com/esr360/K-Tooltips/" target="blank">View on Github</a>
+			</h3>
+			
+            <h2 id="default-kayzen-grid-system">Default Tooltip</h2>
+			
+			<h3 id="basic-example">Basic Example</h3>
+			
+			<div class="demo">
+				<div data-tooltip="This tooltip though">
+					Hover Me                
+				</div>
+			</div>
+			
+<pre data-enlighter-language="html" class="EnlighterJSRAW" style="display: none;">
+&lt;div data-tip="This tooltip though">
+	Hover Me                
+&lt;/div>
+</pre>
+
+			<h6>The CSS</h6>
+
+<pre data-enlighter-language="css" class="EnlighterJSRAW" style="display: none;"> 
+.main {
+	@include row;
+}
+
+.sidebar {
+	@include column(
+		$width: (3, 12)
+	);
+}
+
+.content {
+	@include column(
+		$width: (9, 12)
+	);
+}
+</pre>
+			
+			<h2 id="help-support-contributing">Help, Support & Contributing</h2>
+			
+			<p>For all issues, bugs suggestions and feature requests, please use the <a target="blank" href="https://github.com/esr360/Kayzen-GS/issues">Github issues page</a>. Any and all contributions are welcomed!</p>
+			
+			<p>Follow <a target="blank" href="https://twitter.com/ESR360">@esr360</a> on Twitter!</p>
+			
+		</div>
+		
+	    <!-- Tooltip Init -->
+		
+		<script>
+			$("[data-tooltip]").tooltip();
+			/*
+			$("[data-tooltip]").tooltip({
+			  position : "left",
+			  color    : "dark"
+			});
+			*/
+		</script>
+					
+	    <!-- Syntax Highlighter -->
+	
+	    <link rel="stylesheet" href="http://skyux.com/libraries/enlighter/EnlighterJS.yui.css">
+	    <script src="http://skyux.com/libraries/enlighter/mootools-core-yc.js"></script>    
+	    <script src="http://skyux.com/libraries/enlighter/EnlighterJS.yui.js"></script>    
+	    <script type="text/javascript">/* <![CDATA[ */window.addEvent('domready', function(){if (typeof EnlighterJS == "undefined"){return;};EnlighterJS.Util.Init('pre.EnlighterJSRAW', 'code.EnlighterJSRAW', {"language":"html","theme":"enlighter","indent":4,"hover":"hoverEnabled","showLinenumbers":true,"rawButton":true,"infoButton":true,"windowButton":true,"rawcodeDoubleclick":false,"grouping":true});});/* ]]> */</script>
+		
+	</body>
+	
+</html>

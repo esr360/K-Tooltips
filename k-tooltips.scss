@@ -5,18 +5,55 @@
 // Settings
 //-----------------------------------------------------------------
 
-// ("color name", "background color", "text color")
-$tooltip-colors: (
-	(light, rgba(255, 255, 255, 0.8), #444),
+// Configurable/Default Options
+$tooltip-options: (
+	// Layout & Positioning
+	position       : top,
+	transition     : 0.4s,
+	max-width      : 500px,
+	z-index        : 9999,
+	// Appearance
+	radius         : 0.25em,
+	padding        : 1em,
+	arrow-size     : 0.5em,
+	text-color     : white,
+	bg-color       : rgba(0, 0, 0, 0.75),
+	// Typography
+	font-size      : 1em,
+	text-transform : none,
+	font-weight    : normal
 );
+
+// Custom Styles
+$tooltip-styles: (
+	light: (
+		bg-color       : rgba(white, 0.8),
+		text-color     : #444
+	),
+);
+
+$tooltip-positions: (
+	top, bottom, left, right
+);
+		
+// Utilities
+//-----------------------------------------------------------------
+
+@function tooltip($tooltip-option) {
+    @return map-get($tooltip-options, $tooltip-option);
+}
+
+@function tooltip-style($tooltip-style) {
+	@return map-get(map-get($tooltip-styles, light), $tooltip-style);
+}
 
 // CSS Triangle
 //-----------------------------------------------------------------
 
 @mixin triangle(
-	$position: top, 
-	$color: rgba(0, 0, 0, 0.75),
-	$size: 0.5rem
+	$position: tooltip(position), 
+	$color: tooltip(bg-color),
+	$size: tooltip(arrow-size)
 ) {
 	&:after {
 		content:'';
@@ -53,16 +90,6 @@ $tooltip-colors: (
 		}
 	}
 }
-
-// Config
-//-----------------------------------------------------------------
-
-$tooltip-positions: (
-	top, 
-	bottom, 
-	left, 
-	right
-);
 		
 // Tooltip
 //-----------------------------------------------------------------
@@ -72,29 +99,41 @@ $tooltip-positions: (
 	position: relative;
 	cursor: pointer;	
 	
+	@at-root [class*="tooltip-wrapper-"] {
+		text-align: center;
+	}
+	
 	@at-root .tooltip-content {
+		
+		// Layout & Positioning
 		position: absolute;
 		display: inline-block;
-		max-width: 500px;
-		white-space: pre;
-		transition: 0.4s;
+		white-space: pre-wrap;
+		padding: tooltip(padding);
+		max-width: tooltip(max-width);
+		transition: tooltip(transition);
+		z-index: tooltip(z-index);
+		
 		// Appearance
-		padding: 1em;
-		border-radius: 0.25em;
-		color: white;
-		background-color: rgba(0, 0, 0, 0.75);
-		// Font reset
-		font-size: 1rem;
-		text-transform: none;
-		font-weight: normal;
-		// Hidden by default
+		border-radius: tooltip(radius);
+		color: tooltip(text-color);
+		background-color: tooltip(bg-color);
+		
+		// Typography
+		font-size: tooltip(font-size);
+		text-transform: tooltip(text-transform);
+		font-weight: tooltip(font-weight);
+		
+		// Hide by default
 		opacity: 0;
 		visibility: hidden;
+		
 		// Show when parent component is hovered
         [data-tooltip]:hover & {
 			opacity: 1;
 			visibility: visible;
         }
+		
 		// Positions
 		@each $tooltip-position in $tooltip-positions {
 			[class*="tooltip-wrapper-"][class*="-#{$tooltip-position}"] & {
@@ -113,23 +152,23 @@ $tooltip-positions: (
 				}
 			}	
 		}
-		// Colors
-		@each $tooltip-color in $tooltip-colors {
-			$namespace: nth($tooltip-color, 1);
-			$color: nth($tooltip-color, 2);
-			$text: nth($tooltip-color, 3);
-			[class*="tooltip-wrapper-"][class*="-#{$namespace}"] & {
-				color: $text;
-				background: $color;
+		
+		// Custom Styles
+		@each $tooltip-style in $tooltip-styles {
+		 	$tooltip-style: nth($tooltip-style, 1);
+			[class*="tooltip-wrapper-"][class*="-#{$tooltip-style}"] & {
+				color: tooltip-style(text-color);
+				background: tooltip-style(bg-color);
 				@each $position in $tooltip-positions {
-					@at-root .tooltip-wrapper-#{$position}-#{$namespace} .tooltip-content {
+					@at-root .tooltip-wrapper-#{$position}-#{$tooltip-style} .tooltip-content {
 						&:after {
-							border-#{$position}-color: $color !important;
+							border-#{$position}-color: tooltip-style(bg-color) !important;
 						}
 					}			
 				}
 			}
 		}
-	}
+		
+	} // .tooltip-content
 
-} // tooltip
+} // [data-tooltip]
