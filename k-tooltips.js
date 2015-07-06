@@ -10,7 +10,7 @@
 			
 			var defaults = {  
 				position : "top",
-				style    : "default"
+				style    : "light"
 			};  
 			
 			var options = $.extend(defaults, options);	
@@ -23,6 +23,8 @@
 				
 				$(this).append(
 					$("<div class='tooltip-wrapper-" + $position + "-" + $style + "'><div class='tooltip-content'>"+ $content +"</div></div>")
+				).wrapAll(
+					'<div class="tooltip-container"/>'
 				);
 				
 			});

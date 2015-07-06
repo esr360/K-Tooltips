@@ -8,27 +8,29 @@
 // Configurable/Default Options
 $tooltip-options: (
 	// Layout & Positioning
-	position       : top,
-	transition     : 0.4s,
-	max-width      : 500px,
-	z-index        : 9999,
-	// Appearance
-	radius         : 0.25em,
-	padding        : 1em,
-	arrow-size     : 0.5em,
-	text-color     : white,
-	bg-color       : rgba(0, 0, 0, 0.75),
+	position         : top,
+	transition       : 0.4s,
+	z-index          : 9999,
+	distance         : -1em,
+	// Size & Appearance
+	max-width        : 500px,
+	padding          : 1em,
+	background-color : rgba(0, 0, 0, 0.75),
+	border-radius    : 0.25em,
+	arrow-size       : 0.5em,
 	// Typography
-	font-size      : 1em,
-	text-transform : none,
-	font-weight    : normal
+	font-size        : 1em,
+	color            : white,
+	text-transform   : none,
+	font-weight      : normal
 );
 
 // Custom Styles
 $tooltip-styles: (
 	light: (
-		bg-color       : rgba(white, 0.8),
-		text-color     : #444
+		background-color : rgba(white, 0.8),
+		color            : #444,
+		transition       : 0
 	),
 );
 
@@ -52,7 +54,7 @@ $tooltip-positions: (
 
 @mixin triangle(
 	$position: tooltip(position), 
-	$color: tooltip(bg-color),
+	$color: tooltip(background-color),
 	$size: tooltip(arrow-size)
 ) {
 	&:after {
@@ -94,12 +96,14 @@ $tooltip-positions: (
 // Tooltip
 //-----------------------------------------------------------------
 
-[data-tooltip] {
-		
-	position: relative;
-	cursor: pointer;	
+[data-tooltip] {	
 	
-	@at-root [class*="tooltip-wrapper-"] {
+	@at-root .tooltip-container & {		
+		position: relative;
+		cursor: pointer;
+	}
+	
+	@at-root [class*="tooltip-wrapper"] {
 		text-align: center;
 	}
 	
@@ -109,18 +113,18 @@ $tooltip-positions: (
 		position: absolute;
 		display: inline-block;
 		white-space: pre-wrap;
-		padding: tooltip(padding);
-		max-width: tooltip(max-width);
 		transition: tooltip(transition);
 		z-index: tooltip(z-index);
 		
-		// Appearance
-		border-radius: tooltip(radius);
-		color: tooltip(text-color);
-		background-color: tooltip(bg-color);
+		// Size & Appearance
+		max-width: tooltip(max-width);
+		padding: tooltip(padding);
+		background-color: tooltip(background-color);
+		border-radius: tooltip(border-radius);
 		
 		// Typography
 		font-size: tooltip(font-size);
+		color: tooltip(color);
 		text-transform: tooltip(text-transform);
 		font-weight: tooltip(font-weight);
 		
@@ -136,8 +140,8 @@ $tooltip-positions: (
 		
 		// Positions
 		@each $tooltip-position in $tooltip-positions {
-			[class*="tooltip-wrapper-"][class*="-#{$tooltip-position}"] & {
-				#{$tooltip-position}: -1rem;
+			[class*="tooltip-wrapper"][class*="-#{$tooltip-position}"] & {
+				#{$tooltip-position}: tooltip(distance);
 				@include triangle(#{$tooltip-position});
 				@if $tooltip-position == top {
 					transform: translateX(-50%) translateY(-100%);
@@ -155,20 +159,27 @@ $tooltip-positions: (
 		
 		// Custom Styles
 		@each $tooltip-style in $tooltip-styles {
-		 	$tooltip-style: nth($tooltip-style, 1);
-			[class*="tooltip-wrapper-"][class*="-#{$tooltip-style}"] & {
-				color: tooltip-style(text-color);
-				background: tooltip-style(bg-color);
+		 	$custom-style: nth($tooltip-style, 1);
+			$custom-key: nth($tooltip-style, 1);
+			$custom-value: nth($tooltip-style, 2);
+			@debug $custom-key;
+			[class*="tooltip-wrapper"][class*="-#{$custom-style}"] & {
 				@each $position in $tooltip-positions {
-					@at-root .tooltip-wrapper-#{$position}-#{$tooltip-style} .tooltip-content {
+					@at-root .tooltip-wrapper-#{$position}-#{$custom-style} .tooltip-content {
 						&:after {
-							border-#{$position}-color: tooltip-style(bg-color) !important;
+							border-#{$position}-color: tooltip-style(background-color) !important;
 						}
 					}			
 				}
-			}
+				$tooltip-options: map-remove($tooltip-options, "position", "distance", "arrow-size");
+				@each $tooltip-option in $tooltip-options {
+					@if map-has-key(map-get($tooltip-styles, $custom-style), $tooltip-key) {
+						#{$tooltip-key}: #{$tooltip-value};
+					}
+				}
+			}	
 		}
 		
 	} // .tooltip-content
-
+	
 } // [data-tooltip]
