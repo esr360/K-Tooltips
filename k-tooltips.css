@@ -107,9 +107,8 @@
   border-right: solid 0.5em rgba(0, 0, 0, 0.75);
 }
 [class*="tooltip-wrapper"][class*="-light"] .tooltip-content {
-  transition: 0;
-  background-color: rgba(255, 255, 255, 0.8);
-  color: #444;
+  background-color: rgba(255, 255, 255, 0.8) !important;
+  color: #444 !important;
 }
 .tooltip-wrapper-top-light .tooltip-content:after {
   border-top-color: rgba(255, 255, 255, 0.8) !important;
@@ -122,4 +121,31 @@
 }
 .tooltip-wrapper-right-light .tooltip-content:after {
   border-right-color: rgba(255, 255, 255, 0.8) !important;
+}
+[class*="tooltip-wrapper"][class*="-brand"] .tooltip-content {
+  transition: 0s !important;
+  background-color: #34DDDD !important;
+  border-radius: 1em !important;
+  text-transform: uppercase !important;
+  bottom: -3em;
+}
+.tooltip-wrapper-top-brand .tooltip-content:after {
+  border-top-color: #34DDDD !important;
+  border-width: 1em !important;
+  margin-left: -1em !important;
+}
+.tooltip-wrapper-bottom-brand .tooltip-content:after {
+  border-bottom-color: #34DDDD !important;
+  border-width: 1em !important;
+  margin-left: -1em !important;
+}
+.tooltip-wrapper-left-brand .tooltip-content:after {
+  border-left-color: #34DDDD !important;
+  border-width: 1em !important;
+  margin-left: -1em !important;
+}
+.tooltip-wrapper-right-brand .tooltip-content:after {
+  border-right-color: #34DDDD !important;
+  border-width: 1em !important;
+  margin-left: -1em !important;
 }

@@ -3,10 +3,9 @@
 // https://github.com/esr360/K-Tooltips
 //=================================================================
 
-// Settings
+// Default/Configurable Settings
 //-----------------------------------------------------------------
 
-// Configurable/Default Options
 $tooltip-options: (
 	// Layout & Positioning
 	position         : top,
@@ -27,13 +26,26 @@ $tooltip-options: (
 );
 
 // Custom Styles
+//-----------------------------------------------------------------
+
 $tooltip-styles: (
 	light: (
 		background-color : rgba(white, 0.8),
-		color            : #444,
-		transition       : 0
+		color            : #444
 	),
+	brand: (
+		position         : bottom,
+		transition       : 0s,
+		distance         : -3em,
+		background-color : #34DDDD,
+		border-radius    : 1em,
+		arrow-size       : 1em,
+		text-transform   : uppercase
+	)
 );
+
+// Positions
+//-----------------------------------------------------------------
 
 $tooltip-positions: (
 	top, bottom, left, right
@@ -44,6 +56,10 @@ $tooltip-positions: (
 
 @function tooltip($tooltip-option) {
     @return map-get($tooltip-options, $tooltip-option);
+}
+
+@function tooltip-custom($custom-key) {
+	@return map-get(map-get($tooltip-styles, $custom-style), $custom-key);
 }
 
 // CSS Triangle
@@ -156,25 +172,42 @@ $tooltip-positions: (
 		
 		// Custom Styles
 		@each $tooltip-style in $tooltip-styles {
-		 	$custom-style: nth($tooltip-style, 1);
+			
+		 	$custom-style: nth($tooltip-style, 1) !global;
+			 
 			[class*="tooltip-wrapper"][class*="-#{$custom-style}"] & {
+				
+				$tooltip-options: map-remove($tooltip-options, "position", "distance", "arrow-size");
+				
+				@each $tooltip-option in $tooltip-options {
+					$custom-key: nth($tooltip-option, 1);
+					$custom-value: tooltip-custom($custom-key);
+					@if map-has-key(map-get($tooltip-styles, $custom-style), $custom-key) {
+						#{$custom-key}: #{$custom-value} !important;
+					}
+				}
+				
 				@each $position in $tooltip-positions {
 					@at-root .tooltip-wrapper-#{$position}-#{$custom-style} .tooltip-content {
 						&:after {
-							border-#{$position}-color: map-get(map-get($tooltip-styles, $custom-style), background-color) !important;
+							@if map-has-key(map-get($tooltip-styles, $custom-style), background-color) {
+								border-#{$position}-color: tooltip-custom(background-color) !important;
+							}
+							@if map-has-key(map-get($tooltip-styles, $custom-style), arrow-size) {
+								border-width: tooltip-custom(arrow-size) !important;
+								margin-left: -#{tooltip-custom(arrow-size)} !important;
+							}
 						}
 					}			
 				}
-				$tooltip-options: map-remove($tooltip-options, "position", "distance", "arrow-size");
-				@each $tooltip-option in $tooltip-options {
-					$custom-key: nth($tooltip-option, 1);
-					$custom-value: map-get(map-get($tooltip-styles, $custom-style), $custom-key);
-					@if map-has-key(map-get($tooltip-styles, $custom-style), $custom-key) {
-						#{$custom-key}: #{$custom-value};
-					}
+				
+				@if map-has-key(map-get($tooltip-styles, $custom-style), position) {
+					#{tooltip-custom(position)}: tooltip-custom(distance);
 				}
-			}	
-		}
+				
+			}
+				
+		} // @tooltip-styles
 		
 	} // .tooltip-content
 	

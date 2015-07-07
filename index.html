@@ -105,6 +105,12 @@
 				</div>
 			</div>
 			
+			<div class="demo">
+				<div class="tooltip-brand" data-tooltip="This tooltip though">
+					Hover Me                
+				</div>
+			</div>
+			
 <pre data-enlighter-language="html" class="EnlighterJSRAW" style="display: none;">
 &lt;div data-tip="This tooltip though">
 	Hover Me                
@@ -116,18 +122,6 @@
 <pre data-enlighter-language="css" class="EnlighterJSRAW" style="display: none;"> 
 .main {
 	@include row;
-}
-
-.sidebar {
-	@include column(
-		$width: (3, 12)
-	);
-}
-
-.content {
-	@include column(
-		$width: (9, 12)
-	);
 }
 </pre>
 			
@@ -142,13 +136,11 @@
 	    <!-- Tooltip Init -->
 		
 		<script>
-			$("[data-tooltip]").tooltip();
-			/*
-			$("[data-tooltip]").tooltip({
-			  position : "left",
-			  color    : "dark"
+			$("[data-tooltip]:not([class*='tooltip'])").tooltip();
+			$(".tooltip-brand").tooltip({
+				position : "bottom",
+				style    : "brand"
 			});
-			*/
 		</script>
 					
 	    <!-- Syntax Highlighter -->
