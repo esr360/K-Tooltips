@@ -19,6 +19,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	    <script src="k-tooltips.js"></script>
 		
+		<!-- Demo Styles -->
 		<style>
 			body {
 				font-family: Arial;
@@ -26,6 +27,9 @@
 			}
 			a {
 				color: #6d3b81;
+			}
+			ul {
+				padding-left: 1em;
 			}
 			.logo {
 				max-width: 75%;
@@ -95,7 +99,47 @@
 				<a class="page-button" href="https://github.com/esr360/K-Tooltips/" target="blank">View on Github</a>
 			</h3>
 			
-            <h2 id="default-kayzen-grid-system">Default Tooltip</h2>
+            <h2 id="default-tooltip">Getting Started</h2>
+			
+			<p>Thanks for checking out K-Tooltips! Getting started is easy, but before you begin please ensure the following:</p>
+			
+			<ul>
+				<li>Your project has jQuery 1.4 or higher</li>
+				<li>You have Sass 3.4 or higher installed (required for customised options)</li>
+			</ul>
+			
+			<p>You can still use the default out-the-box options if you're not using Sass.</p>
+			
+			<h4>Load the Assets</h4>
+			
+<pre data-enlighter-language="html" class="EnlighterJSRAW" style="display: none;">
+&lt;!-- Stylesheet -->
+&lt;link rel="stylesheet" href="k-tooltips.css">
+&lt;!-- Js -->
+&lt;script src="k-tooltips.js"></script>
+</pre>
+
+			<h4>Add the Markup</h4>		
+				
+<pre data-enlighter-language="html" class="EnlighterJSRAW" style="display: none;">
+&lt;div data-tooltip="This is the tooltip content">
+	The Result (hover me)                
+&lt;/div>
+</pre>
+			
+			<h4>Initialise the Function</h4>
+			
+<pre data-enlighter-language="javascript" class="EnlighterJSRAW" style="display: none;">
+$("[data-tooltip]").tooltip();
+</pre>
+			
+			<div class="demo">
+				<div data-tooltip="This is the tooltip content">
+					The Result (hover me)          
+				</div>
+			</div>
+			
+            <h2 id="default-tooltip">Default Tooltip</h2>
 			
 			<h3 id="basic-example">Basic Example</h3>
 			
@@ -105,25 +149,146 @@
 				</div>
 			</div>
 			
-			<div class="demo">
-				<div class="tooltip-brand" data-tooltip="This tooltip though">
-					Hover Me                
-				</div>
-			</div>
+			<h4>Tooltip Markup</h4>
+			
+			<p>To create a tooltip, your element needs the <code>data-tooltip</code> <b>data-attribute</b>. The content of this attribute will make up your tooltip's content - HTML is allowed here.</p>
 			
 <pre data-enlighter-language="html" class="EnlighterJSRAW" style="display: none;">
-&lt;div data-tip="This tooltip though">
+&lt;div data-tooltip="This tooltip though">
 	Hover Me                
 &lt;/div>
 </pre>
-
-			<h6>The CSS</h6>
-
+			
+			<p>The above example uses the default styles as defined in <b>k-tooltips.scss</b>. Change these values to your liking to style your default tooltip.</p>
+			
 <pre data-enlighter-language="css" class="EnlighterJSRAW" style="display: none;"> 
-.main {
-	@include row;
-}
+$tooltip-options: (
+	// Layout & Positioning
+	position         : top,
+	transition       : 0.4s,
+	z-index          : 9999,
+	distance         : -1em,
+	// Size & Appearance
+	max-width        : 500px,
+	padding          : 1em,
+	background-color : rgba(0, 0, 0, 0.75),
+	border-radius    : 0.25em,
+	arrow-size       : 0.5em,
+	// Typography
+	font-size        : 1em,
+	color            : white,
+	text-transform   : none,
+	font-weight      : normal
+);
 </pre>
+
+			<h4>Tooltip Init</h4>
+			
+			<p>You need to call the <b>tooltip</b> function on your element:</p>
+			
+<pre data-enlighter-language="javascript" class="EnlighterJSRAW" style="display: none;">
+$("[data-tooltip]").tooltip();
+</pre>
+	
+			<p>The <b>tooltip</b> function currently accepts two custom parameters:</p>
+				
+			<ul>
+				<li>Position</li>
+				<li>Style</li>
+			</ul>
+			
+			<p><b>Position</b> is a value from a hard coded list and can be either <b>top</b>, <b>bottom</b>, <b>left</b> or <b>right</b>. This sets the position of the tooltip element itself, so a value of <b>top</b> (default) would place the tooltip <b>above</b> the element.</p>
+			
+			<p><b>Style</b> controls the visual appearance of the tooltip. This value can be thought of as your tooltip's "theme". To create a theme, see the <a href="#custom-tooltips">custom tooltips</a> section. This value is <b>default</b> by default, applying the default styles outlined above.</p>
+
+			<p>The above <b>init</b> is the same as writing:</p>
+	
+<pre data-enlighter-language="javascript" class="EnlighterJSRAW" style="display: none;">
+$("[data-tooltip]").tooltip({
+	position : "top",
+	style    : "default"
+});
+</pre>
+
+			<h2 id="custom-tooltips">Custom Tooltips</h2>
+			
+			<p>It is possible to create any number of differently styled tooltips to use in your project. Here is an exampe of a tooltip using custom styles:</p>
+			
+			<div class="demo">
+				<div class="custom-tooltip" data-tooltip="This is a custom tooltip">
+					Hover Me                
+				</div>
+			</div>
+
+			<h4>Creating the Styles</h4>
+			
+			<p>K-Tooltips come with a <b>light</b> theme which can be used instead of the default dark tooltip. You can add all other custom styles you may want below the provided <b>light</b> one.</p>
+			
+<pre data-enlighter-language="css" class="EnlighterJSRAW" style="display: none;"> 
+$tooltip-styles: (
+	light: (
+		background-color : rgba(white, 0.8),
+		color            : #444
+	),
+	custom: (
+		position         : bottom,
+		transition       : 0s,
+		distance         : -3em,
+		background-color : #34DDDD,
+		border-radius    : 1em,
+		arrow-size       : 1em,
+		text-transform   : uppercase
+	)
+);
+</pre>
+
+			<p>Any style included here can be passed to the <b>style</b> parameter when initialising your tooltip:</p>
+				
+<pre data-enlighter-language="javascript" class="EnlighterJSRAW" style="display: none;">	
+$("[data-tooltip]").tooltip({
+	style : "custom"
+});
+</pre>		
+			
+			<p>If using more than one tooltip style in a single project, we cannot initialise the default tooltip on the naked <code>[data-tooltip]</code> element, we must do something like this:</p>
+			
+<pre data-enlighter-language="javascript" class="EnlighterJSRAW" style="display: none;">
+$("[data-tooltip]:not([class*="tooltip"])").tooltip();
+</pre>
+
+			<p>This allows us to apply the default tooltip to any element with the <b>data-tooltip</b> attribute as normal, whilst still allowing us to use other themes. The logic being that all custom styles will be applied with a unique class that contains the word <b>tooltip</b>:</p>
+			
+<pre data-enlighter-language="javascript" class="EnlighterJSRAW" style="display: none;">
+$(".custom-tooltip").tooltip({
+	position : "bottom",
+	style    : "custom"
+});
+</pre>
+
+			<p>Which would be used like so:</p>
+			
+<pre data-enlighter-language="html" class="EnlighterJSRAW" style="display: none;">
+&lt;div class="custom-tooltip" data-tooltip="This is a custom tooltip">
+	Hover Me                
+&lt;/div>
+</pre>
+			
+			<h2 id="more-examples">More Examples</h2>
+			
+			<h4>Left Tooltip</h4>
+						
+			<div class="demo">
+				<div class="tooltip-left" data-tooltip="This is a custom tooltip">
+					Left Tooltip                
+				</div>
+				<script>
+					$(".tooltip-left").tooltip({
+						position : "left"
+					});
+				</script>
+			</div>		
+			
+			<h2 id="hints-tips">Hints & Tips</h2>	
 			
 			<h2 id="help-support-contributing">Help, Support & Contributing</h2>
 			
@@ -137,9 +302,9 @@
 		
 		<script>
 			$("[data-tooltip]:not([class*='tooltip'])").tooltip();
-			$(".tooltip-brand").tooltip({
+			$(".custom-tooltip").tooltip({
 				position : "bottom",
-				style    : "brand"
+				style    : "custom"
 			});
 		</script>
 					
