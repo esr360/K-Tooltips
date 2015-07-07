@@ -46,10 +46,6 @@ $tooltip-positions: (
     @return map-get($tooltip-options, $tooltip-option);
 }
 
-@function tooltip-style($tooltip-style) {
-	@return map-get(map-get($tooltip-styles, light), $tooltip-style);
-}
-
 // CSS Triangle
 //-----------------------------------------------------------------
 
@@ -165,7 +161,7 @@ $tooltip-positions: (
 				@each $position in $tooltip-positions {
 					@at-root .tooltip-wrapper-#{$position}-#{$custom-style} .tooltip-content {
 						&:after {
-							border-#{$position}-color: tooltip-style(background-color) !important;
+							border-#{$position}-color: map-get(map-get($tooltip-styles, $custom-style), background-color) !important;
 						}
 					}			
 				}
