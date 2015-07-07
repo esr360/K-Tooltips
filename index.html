@@ -15,7 +15,7 @@
 	    <!-- Stylesheet -->
 	    <link rel="stylesheet" href="k-tooltips.css">
 		
-	    <!-- Js -->
+	    <!-- JS -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	    <script src="k-tooltips.js"></script>
 		
@@ -60,6 +60,9 @@
 				width: 1200px;
 				max-width: 95%;
 				margin: auto;
+			}
+			h5 small {
+				color: #777;
 			}
 			h6 {
 				font-size: 1rem;
@@ -115,7 +118,7 @@
 <pre data-enlighter-language="html" class="EnlighterJSRAW" style="display: none;">
 &lt;!-- Stylesheet -->
 &lt;link rel="stylesheet" href="k-tooltips.css">
-&lt;!-- Js -->
+&lt;!-- JS -->
 &lt;script src="k-tooltips.js"></script>
 </pre>
 
@@ -163,24 +166,73 @@ $("[data-tooltip]").tooltip();
 			
 <pre data-enlighter-language="css" class="EnlighterJSRAW" style="display: none;"> 
 $tooltip-options: (
-	// Layout & Positioning
-	position         : top,
-	transition       : 0.4s,
-	z-index          : 9999,
-	distance         : -1em,
 	// Size & Appearance
-	max-width        : 500px,
-	padding          : 1em,
-	background-color : rgba(0, 0, 0, 0.75),
-	border-radius    : 0.25em,
-	arrow-size       : 0.5em,
+	max-width      : 500px,
+	padding        : 1em,
+	distance       : -1em,
+	background     : rgba(0, 0, 0, 0.75),
+	border-radius  : 0.25em,
+	arrow-size     : 0.5em,
 	// Typography
-	font-size        : 1em,
-	color            : white,
-	text-transform   : none,
-	font-weight      : normal
+	font-size      : 1em,
+	color          : white,
+	text-transform : none,
+	font-weight    : normal,
+	// Other
+	transition     : 0.4s,
+	z-index        : 9999
 );
 </pre>
+	
+			<p><i>Whilst the default examples use <b>em</b>'s, you can use any unit that would normally work.</i></p>
+			
+			<h5>Max Width <small>max-width</small></h5>
+			
+			<p>This is the maximum width your tooltip can grow to before content begins to wrap..</p>
+	
+			<h5>Padding <small>padding</small></h5>
+			
+			<p>Set the padding (inner-spacing) of your custom tooltip.</p>
+	
+			<h5>Distance <small>distance</small></h5>
+			
+			<p>This is the distance which your tooltip should be from the element it corresponds to. For most use cases this value should be negative, as the CSS positioning works on a left-to-right/top-to-bottom basis.</p>
+			
+			<h5>Background <small>background</small></h5>
+			
+			<p>Set the base background color for your tooltip and the corresponding directional-arrow.</p>
+			
+			<h5>Border Radius <small>border-radius</small></h5>
+			
+			<p>Set the radius of your tooltip's border. To disable the border, set this to <b>0</b>.</p>
+			
+			<h5>Arrow Size <small>arrow-size</small></h5>
+			
+			<p>This is the size of the directional arrow for your tooltip.</p>
+			
+			<h5>Font Size <small>font-size</small></h5>
+			
+			<p>Set your tooltip's default font-size.</p>
+			
+			<h5>Color <small>color</small></h5>
+			
+			<p>Set your tooltip's default text color.</p>
+			
+			<h5>Text Transform <small>text-transform</small></h5>
+			
+			<p>Set your tooltip's default text-transform property.</p>
+			
+			<h5>Font Weight <small>color</small></h5>
+			
+			<p>Set your tooltip's default font weight.</p>
+			
+			<h5>Transition <small>transition</small></h5>
+			
+			<p>Set the animation speed at which your tooltip should fade in. To disable animations set this value to <b>0s</b>.</p>
+			
+			<h5>Z-Index <small>z-index</small></h5>
+			
+			<p>Set the z-index for your tooltip. This should generally be a fairly large number to ensure it does not render underneath any element.</p>
 
 			<h4>Tooltip Init</h4>
 			
@@ -215,29 +267,28 @@ $("[data-tooltip]").tooltip({
 			<p>It is possible to create any number of differently styled tooltips to use in your project. Here is an exampe of a tooltip using custom styles:</p>
 			
 			<div class="demo">
-				<div class="custom-tooltip" data-tooltip="This is a custom tooltip">
+				<div class="tooltip-demo-style-1" data-tooltip="This is a custom tooltip">
 					Hover Me                
 				</div>
 			</div>
 
 			<h4>Creating the Styles</h4>
 			
-			<p>K-Tooltips come with a <b>light</b> theme which can be used instead of the default dark tooltip. You can add all other custom styles you may want below the provided <b>light</b> one.</p>
+			<p>K-Tooltips come with a <b>light</b> theme which can be used instead of the default dark tooltip. You can add all other custom styles you may want below the provided <b>light</b> one, or above if you're feeling crazy.</p>
 			
 <pre data-enlighter-language="css" class="EnlighterJSRAW" style="display: none;"> 
 $tooltip-styles: (
 	light: (
-		background-color : rgba(white, 0.8),
-		color            : #444
+		background : rgba(white, 0.8),
+		color      : #444
 	),
-	custom: (
-		position         : bottom,
-		transition       : 0s,
-		distance         : -3em,
-		background-color : #34DDDD,
-		border-radius    : 1em,
-		arrow-size       : 1em,
-		text-transform   : uppercase
+	demo-style-1: (
+		transition     : 0s,
+		distance       : -3em,
+		background     : #34DDDD,
+		border-radius  : 1em,
+		arrow-size     : 1em,
+		text-transform : uppercase
 	)
 );
 </pre>
@@ -246,7 +297,7 @@ $tooltip-styles: (
 				
 <pre data-enlighter-language="javascript" class="EnlighterJSRAW" style="display: none;">	
 $("[data-tooltip]").tooltip({
-	style : "custom"
+	style : "demo-style-1"
 });
 </pre>		
 			
@@ -259,16 +310,16 @@ $("[data-tooltip]:not([class*="tooltip"])").tooltip();
 			<p>This allows us to apply the default tooltip to any element with the <b>data-tooltip</b> attribute as normal, whilst still allowing us to use other themes. The logic being that all custom styles will be applied with a unique class that contains the word <b>tooltip</b>:</p>
 			
 <pre data-enlighter-language="javascript" class="EnlighterJSRAW" style="display: none;">
-$(".custom-tooltip").tooltip({
+$(".tooltip-demo-style-1").tooltip({
 	position : "bottom",
-	style    : "custom"
+	style    : "demo-style-1"
 });
 </pre>
 
 			<p>Which would be used like so:</p>
 			
 <pre data-enlighter-language="html" class="EnlighterJSRAW" style="display: none;">
-&lt;div class="custom-tooltip" data-tooltip="This is a custom tooltip">
+&lt;div class="tooltip-demo-style-1" data-tooltip="This is a custom tooltip">
 	Hover Me                
 &lt;/div>
 </pre>
@@ -279,20 +330,126 @@ $(".custom-tooltip").tooltip({
 						
 			<div class="demo">
 				<div class="tooltip-left" data-tooltip="This is a custom tooltip">
-					Left Tooltip                
+					Hover Me                
 				</div>
 				<script>
 					$(".tooltip-left").tooltip({
 						position : "left"
 					});
-				</script>
-			</div>		
+				</script>		
+				
+			</div>	
 			
-			<h2 id="hints-tips">Hints & Tips</h2>	
+<pre data-enlighter-language="html" class="EnlighterJSRAW" style="display: none;">
+&lt;div class="tooltip-left" data-tooltip="This is a custom tooltip">
+	Hover Me                
+&lt;/div>
+&lt;script>
+	$(".tooltip-left").tooltip({
+		position : "left"
+	});
+&lt;/script>
+</pre>
+			
+			<h4>Right Tooltip</h4>
+						
+			<div class="demo">
+				<div class="tooltip-right" data-tooltip="This is a custom tooltip">
+					Hover Me               
+				</div>
+				<script>
+					$(".tooltip-right").tooltip({
+						position : "right"
+					});
+				</script>
+			</div>	
+			
+<pre data-enlighter-language="html" class="EnlighterJSRAW" style="display: none;">
+&lt;div class="tooltip-right" data-tooltip="This is a custom tooltip">
+	Hover Me                
+&lt;/div>
+&lt;script>
+	$(".tooltip-right").tooltip({
+		position : "right"
+	});
+&lt;/script>
+</pre>
+				
+			<h4>Light Tooltip</h4>
+				
+			<div class="light-tooltip-container">
+				
+				<style>
+					.light-tooltip-container {
+						background-color: #2d2d2d;
+						padding-top: 4em;
+						color: white;
+					}
+				</style>
+							
+				<div class="demo">
+					<div class="tooltip-light" data-tooltip="This is a custom tooltip">
+						Hover Me                
+					</div>
+					<script>
+						$(".tooltip-light").tooltip({
+							style : "light"
+						});
+					</script>
+				</div>
+			
+			</div>
+					
+<pre data-enlighter-language="html" class="EnlighterJSRAW" style="display: none;">
+&lt;div class="tooltip-light" data-tooltip="This is a custom tooltip">
+	Hover Me                
+&lt;/div>
+&lt;script>
+	$(".tooltip-light").tooltip({
+		style : "light"
+	});
+&lt;/script>
+</pre>	
+			
+			<h4>Custom Tooltip</h4>
+						
+			<div class="demo">
+				<div class="tooltip-demo-style-2" data-tooltip="This is a custom tooltip">
+					Hover Me               
+				</div>
+				<script>
+					$(".tooltip-demo-style-2").tooltip({
+						style : "demo-style-2"
+					});
+				</script>
+			</div>	
+			
+<pre data-enlighter-language="css" class="EnlighterJSRAW" style="display: none;">
+$tooltip-styles: (
+	...
+	demo-style-2: (
+		background     : linear-gradient(to bottom, #00dbdb 0%, #258dc8 100%),
+		border-radius  : 0,
+		arrow-color    : #258dc8,
+		transition     : 1.6s
+	)
+);
+</pre>
+
+<pre data-enlighter-language="html" class="EnlighterJSRAW" style="display: none;">
+&lt;div class="tooltip-demo-style-2" data-tooltip="This is a custom tooltip">
+	Hover Me                
+&lt;/div>
+&lt;script>
+	$(".tooltip-right").tooltip({
+		style : "tooltip-demo-style-2"
+	});
+&lt;/script>
+</pre>
 			
 			<h2 id="help-support-contributing">Help, Support & Contributing</h2>
 			
-			<p>For all issues, bugs suggestions and feature requests, please use the <a target="blank" href="https://github.com/esr360/Kayzen-GS/issues">Github issues page</a>. Any and all contributions are welcomed!</p>
+			<p>For all issues, bugs suggestions and feature requests, please use the <a target="blank" href="https://github.com/esr360/K-Tooltips/issues">Github issues page</a>. Any and all contributions are welcomed!</p>
 			
 			<p>Follow <a target="blank" href="https://twitter.com/ESR360">@esr360</a> on Twitter!</p>
 			
@@ -302,9 +459,9 @@ $(".custom-tooltip").tooltip({
 		
 		<script>
 			$("[data-tooltip]:not([class*='tooltip'])").tooltip();
-			$(".custom-tooltip").tooltip({
+			$(".tooltip-demo-style-1").tooltip({
 				position : "bottom",
-				style    : "custom"
+				style    : "demo-style-1"
 			});
 		</script>
 					

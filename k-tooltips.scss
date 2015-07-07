@@ -7,22 +7,22 @@
 //-----------------------------------------------------------------
 
 $tooltip-options: (
-	// Layout & Positioning
-	position         : top,
-	transition       : 0.4s,
-	z-index          : 9999,
-	distance         : -1em,
 	// Size & Appearance
-	max-width        : 500px,
-	padding          : 1em,
-	background-color : rgba(0, 0, 0, 0.75),
-	border-radius    : 0.25em,
-	arrow-size       : 0.5em,
+	max-width      : 500px,
+	padding        : 1em,
+	distance       : -1em,
+	background     : rgba(0, 0, 0, 0.75),
+	border-radius  : 0.25em,
+	arrow-size     : 0.5em,
+	arrow-color    : rgba(0, 0, 0, 0.75),
 	// Typography
-	font-size        : 1em,
-	color            : white,
-	text-transform   : none,
-	font-weight      : normal
+	font-size      : 1em,
+	color          : white,
+	text-transform : none,
+	font-weight    : normal,
+	// Other
+	transition     : 0.4s,
+	z-index        : 9999
 );
 
 // Custom Styles
@@ -30,17 +30,24 @@ $tooltip-options: (
 
 $tooltip-styles: (
 	light: (
-		background-color : rgba(white, 0.8),
-		color            : #444
+		background     : rgba(white, 0.8),
+		color          : #444,
+		arrow-color    : rgba(white, 0.8)
 	),
-	custom: (
-		position         : bottom,
-		transition       : 0s,
-		distance         : -3em,
-		background-color : #34DDDD,
-		border-radius    : 1em,
-		arrow-size       : 1em,
-		text-transform   : uppercase
+	demo-style-1: (
+		distance       : -3em,
+		background     : #34DDDD,
+		border-radius  : 1em,
+		arrow-size     : 1em,
+		arrow-color    : #34DDDD,
+		text-transform : uppercase,
+		transition     : 0s
+	),
+	demo-style-2: (
+		background     : linear-gradient(to bottom, #00dbdb 0%, #258dc8 100%),
+		border-radius  : 0,
+		arrow-color    : #258dc8,
+		transition     : 1.6s
 	)
 );
 
@@ -65,16 +72,22 @@ $tooltip-positions: (
 // CSS Triangle
 //-----------------------------------------------------------------
 
-@mixin triangle(
-	$position: tooltip(position), 
-	$color: tooltip(background-color),
-	$size: tooltip(arrow-size)
-) {
+@mixin triangle-core {
 	&:after {
 		content:'';
 		position: absolute;
 		width: 0;
 		height: 0;
+	}
+}
+
+@mixin triangle(
+	$position: $tooltip-position, 
+	$color: tooltip(arrow-color),
+	$size: tooltip(arrow-size)
+) {
+	
+	&:after {
 		margin-left: -$size;
 		@if $position == top {
 			top: 100%;
@@ -122,24 +135,24 @@ $tooltip-positions: (
 	
 	@at-root .tooltip-content {
 		
-		// Layout & Positioning
-		position: absolute;
-		display: inline-block;
-		white-space: pre-wrap;
-		transition: tooltip(transition);
-		z-index: tooltip(z-index);
-		
 		// Size & Appearance
 		max-width: tooltip(max-width);
 		padding: tooltip(padding);
-		background-color: tooltip(background-color);
+		background: tooltip(background);
 		border-radius: tooltip(border-radius);
+		position: absolute;
+		display: inline-block;
 		
 		// Typography
 		font-size: tooltip(font-size);
 		color: tooltip(color);
 		text-transform: tooltip(text-transform);
 		font-weight: tooltip(font-weight);
+		
+		// Other
+		transition: tooltip(transition);
+		z-index: tooltip(z-index);
+		white-space: pre-wrap;
 		
 		// Hide by default
 		opacity: 0;
@@ -150,6 +163,9 @@ $tooltip-positions: (
 			opacity: 1;
 			visibility: visible;
         }
+		
+		// Direction Arrow
+		@include triangle-core;
 		
 		// Positions
 		@each $tooltip-position in $tooltip-positions {
@@ -176,8 +192,15 @@ $tooltip-positions: (
 		 	$custom-style: nth($tooltip-style, 1) !global;
 			 
 			[class*="tooltip-wrapper"][class*="-#{$custom-style}"] & {
+		
+				$tooltip-options: map-remove($tooltip-options, "distance", "arrow-size");
 				
-				$tooltip-options: map-remove($tooltip-options, "position", "distance", "arrow-size");
+				@each $tooltip-position in $tooltip-positions {
+					@at-root [class*="-#{$tooltip-position}"][class*="-#{$custom-style}"] .tooltip-content {
+						#{$tooltip-position}: tooltip-custom(distance);
+						@include triangle(#{$tooltip-position}, #{tooltip-custom(arrow-color)});
+					}	
+				}
 				
 				@each $tooltip-option in $tooltip-options {
 					$custom-key: nth($tooltip-option, 1);
@@ -185,24 +208,6 @@ $tooltip-positions: (
 					@if map-has-key(map-get($tooltip-styles, $custom-style), $custom-key) {
 						#{$custom-key}: #{$custom-value} !important;
 					}
-				}
-				
-				@each $position in $tooltip-positions {
-					@at-root .tooltip-wrapper-#{$position}-#{$custom-style} .tooltip-content {
-						&:after {
-							@if map-has-key(map-get($tooltip-styles, $custom-style), background-color) {
-								border-#{$position}-color: tooltip-custom(background-color) !important;
-							}
-							@if map-has-key(map-get($tooltip-styles, $custom-style), arrow-size) {
-								border-width: tooltip-custom(arrow-size) !important;
-								margin-left: -#{tooltip-custom(arrow-size)} !important;
-							}
-						}
-					}			
-				}
-				
-				@if map-has-key(map-get($tooltip-styles, $custom-style), position) {
-					#{tooltip-custom(position)}: tooltip-custom(distance);
 				}
 				
 			}
