@@ -1,4 +1,4 @@
-[![Kayzen GS](https://raw.githubusercontent.com/esr360/Kayzen-GS/gh-pages/logo-small.png "Kayzen GS Logo")](https://github.com/esr360/Kayzen-GS)
+[![Kayzen GS](https://raw.githubusercontent.com/esr360/K-Tooltips/gh-pages/logo-small.png "Kayzen GS Logo")](https://github.com/esr360/Kayzen-GS)
 
 ### K-Tooltips - A simple & lightweight tooltip solution.
 
@@ -153,6 +153,16 @@ $("[data-tooltip]").tooltip({
 });
 ```
 
+### Inline Example
+
+To use K-Tooltips on an inline element, for example on a word in a sentence, your element also needs the **inline-tooltip** class:
+
+```html
+<span class="inline-tooltip" data-tooltip="This is an inline tooltip">
+	inline-tooltip
+</span>
+```
+
 ## Custom Tooltips
 
 It is possible to create any number of differently styled tooltips to use in your project. Here is an exampe of a tooltip using custom styles:
@@ -189,10 +199,10 @@ $("[data-tooltip]").tooltip({
 If using more than one tooltip style in a single project, we cannot initialise the default tooltip on the naked `[data-tooltip]` element, we must do something like this:
 
 ```javascript
-$("[data-tooltip]:not([class*="tooltip"])").tooltip();
+$("[data-tooltip]:not([class*="tooltip-"])").tooltip();
 ```
 
-This allows us to apply the default tooltip to any element with the **data-tooltip** attribute as normal, whilst still allowing us to use other themes. The logic being that all custom styles will be applied with a unique class that contains the word **tooltip**:
+This allows us to apply the default tooltip to any element with the **data-tooltip** attribute as normal, whilst still allowing us to use other themes. The logic being that all custom styles will be applied with a unique class that contains the word **tooltip** followed by a hyphen:
 
 ```javascript
 $(".tooltip-demo-style-1").tooltip({

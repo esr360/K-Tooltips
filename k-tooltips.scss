@@ -11,10 +11,10 @@ $tooltip-options: (
 	max-width      : 500px,
 	padding        : 1em,
 	distance       : -1em,
-	background     : rgba(0, 0, 0, 0.75),
+	background     : rgba(black, 0.75),
 	border-radius  : 0.25em,
 	arrow-size     : 0.5em,
-	arrow-color    : rgba(0, 0, 0, 0.75),
+	arrow-color    : rgba(black, 0.75),
 	// Typography
 	font-size      : 1em,
 	color          : white,
@@ -34,21 +34,6 @@ $tooltip-styles: (
 		color          : #444,
 		arrow-color    : rgba(white, 0.8)
 	),
-	demo-style-1: (
-		distance       : -3em,
-		background     : #34DDDD,
-		border-radius  : 1em,
-		arrow-size     : 1em,
-		arrow-color    : #34DDDD,
-		text-transform : uppercase,
-		transition     : 0s
-	),
-	demo-style-2: (
-		background     : linear-gradient(to bottom, #00dbdb 0%, #258dc8 100%),
-		border-radius  : 0,
-		arrow-color    : #258dc8,
-		transition     : 1.6s
-	)
 );
 
 // Positions
@@ -123,10 +108,12 @@ $tooltip-positions: (
 //-----------------------------------------------------------------
 
 [data-tooltip] {	
+		
+	position: relative;
+	cursor: pointer;
 	
-	@at-root .tooltip-container & {		
-		position: relative;
-		cursor: pointer;
+	@at-root .inline-tooltip {
+		display: inline-block;
 	}
 	
 	@at-root [class*="tooltip-wrapper"] {
@@ -166,6 +153,11 @@ $tooltip-positions: (
 		
 		// Direction Arrow
 		@include triangle-core;
+		
+		// Inline-Tooltip styles
+		.inline-tooltip & {
+			white-space: nowrap;
+		}
 		
 		// Positions
 		@each $tooltip-position in $tooltip-positions {
