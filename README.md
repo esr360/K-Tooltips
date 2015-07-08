@@ -74,51 +74,51 @@ $tooltip-options: (
 
 _Whilst some default examples use **em**'s, you can use any unit that would normally work._
 
-##### Max Width <small>max-width</small>
+##### Max Width
 
 This is the maximum width your tooltip can grow to before content begins to wrap.
 
-##### Padding <small>padding</small>
+##### Padding
 
 Set the padding (inner-spacing) of your custom tooltip.
 
-##### Distance <small>distance</small>
+##### Distance
 
 This is the distance which your tooltip should be from the element it corresponds to. For most use cases this value should be negative, as the CSS positioning works on a left-to-right/top-to-bottom basis.
 
-##### Background <small>background</small>
+##### Background
 
 Set the base background color for your tooltip and the corresponding directional-arrow.
 
-##### Border Radius <small>border-radius</small>
+##### Border Radius
 
 Set the radius of your tooltip's border. To disable the border, set this to **0**.
 
-##### Arrow Size <small>arrow-size</small>
+##### Arrow Size
 
 This is the size of the directional arrow for your tooltip.
 
-##### Font Size <small>font-size</small>
+##### Font Size
 
 Set your tooltip's default font-size.
 
-##### Color <small>color</small>
+##### Color
 
 Set your tooltip's default text color.
 
-##### Text Transform <small>text-transform</small>
+##### Text Transform
 
 Set your tooltip's default text-transform property.
 
-##### Font Weight <small>color</small>
+##### Font Weight
 
 Set your tooltip's default font weight.
 
-##### Transition <small>transition</small>
+##### Transition
 
 Set the animation speed at which your tooltip should fade in. To disable animations set this value to **0s**.
 
-##### Z-Index <small>z-index</small>
+##### Z-Index
 
 Set the z-index for your tooltip. This should generally be a fairly large number to ensure it does not render underneath any element.
 
@@ -156,7 +156,7 @@ It is possible to create any number of differently styled tooltips to use in you
 
 K-Tooltips come with a **light** theme which can be used instead of the default dark tooltip. You can add all other custom styles you may want below the provided **light** one, or above if you're feeling crazy.
 
-```css
+```scss
 $tooltip-styles: (
 	light: (
 		background : rgba(white, 0.8),
@@ -264,7 +264,7 @@ $tooltip-styles: (
 	Hover Me                
 </div>
 <script>
-	$(".tooltip-right").tooltip({
+	$(".demo-style-2").tooltip({
 		style : "tooltip-demo-style-2"
 	});
 </script>
