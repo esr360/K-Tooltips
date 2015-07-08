@@ -1,4 +1,4 @@
-[![Kayzen GS](https://raw.githubusercontent.com/esr360/Kayzen-GS/gh-pages/logo-small.png "Kayzen GS Logo")](https://github.com/esr360/Kayzen-GS)
+[![Kayzen GS](https://raw.githubusercontent.com/esr360/K-Tooltips/gh-pages/logo-small.png "Kayzen GS Logo")](https://github.com/esr360/Kayzen-GS)
 
 ### K-Tooltips - A simple & lightweight tooltip solution.
 
