@@ -274,12 +274,12 @@ $("[data-tooltip]").tooltip({
 			
 			<p>This is an example of an <span class="inline-tooltip" data-tooltip="This is an inline tooltip">inline tooltip</span>, just hover the text to see it in action.</p>
 			
-			<p>To use K-Tooltips on an inline element, for example on a word in a sentence, your element also needs the <b>inline-tooltip</b> class:
+			<p>To use K-Tooltips on an inline element, for example on a word in a sentence, your element also needs the <b>inline-tooltip</b> class:</p>
 			
 <pre data-enlighter-language="html" class="EnlighterJSRAW" style="display: none;">
 &lt;span class="inline-tooltip" data-tooltip="This is an inline tooltip">
 	inline-tooltip
-&lt;/span></script>
+&lt;/span>
 </pre>
 			
 			<h2 id="custom-tooltips">Custom Tooltips</h2>
@@ -327,7 +327,7 @@ $("[data-tooltip]").tooltip({
 $("[data-tooltip]:not([class*="tooltip-"])").tooltip();
 </pre>
 
-			<p>This allows us to apply the default tooltip to any element with the <b>data-tooltip</b> attribute as normal, whilst still allowing us to use other themes. The logic being that all custom styles will be applied with a unique class that contains the word <b>tooltip</b>:</p>
+			<p>This allows us to apply the default tooltip to any element with the <b>data-tooltip</b> attribute as normal, whilst still allowing us to use other themes. The logic being that all custom styles will be applied with a unique class that contains the word <b>tooltip</b> followed by a hyphen:</p>
 			
 <pre data-enlighter-language="javascript" class="EnlighterJSRAW" style="display: none;">
 $(".tooltip-demo-style-1").tooltip({
