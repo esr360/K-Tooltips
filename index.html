@@ -170,9 +170,10 @@ $tooltip-options: (
 	max-width      : 500px,
 	padding        : 1em,
 	distance       : -1em,
-	background     : rgba(0, 0, 0, 0.75),
+	background     : rgba(black, 0.75),
 	border-radius  : 0.25em,
 	arrow-size     : 0.5em,
+	arrow-color    : rgba(black, 0.75),
 	// Typography
 	font-size      : 1em,
 	color          : white,
@@ -184,11 +185,11 @@ $tooltip-options: (
 );
 </pre>
 	
-			<p><i>Whilst the default examples use <b>em</b>'s, you can use any unit that would normally work.</i></p>
+			<p><i>Whilst some default examples use <b>em</b>'s, you can use any unit that would normally work.</i></p>
 			
 			<h5>Max Width <small>max-width</small></h5>
 			
-			<p>This is the maximum width your tooltip can grow to before content begins to wrap..</p>
+			<p>This is the maximum width your tooltip can grow to before content begins to wrap.</p>
 	
 			<h5>Padding <small>padding</small></h5>
 			
@@ -209,6 +210,10 @@ $tooltip-options: (
 			<h5>Arrow Size <small>arrow-size</small></h5>
 			
 			<p>This is the size of the directional arrow for your tooltip.</p>
+			
+			<h5>Arrow Color <small>arrow-color</small></h5>
+			
+			<p>Set the color for the tooltip's directional arrow - generally this should be the same color as the tooltip's background.</p>
 			
 			<h5>Font Size <small>font-size</small></h5>
 			
@@ -441,7 +446,7 @@ $tooltip-styles: (
 	Hover Me                
 &lt;/div>
 &lt;script>
-	$(".tooltip-right").tooltip({
+	$(".demo-style-2").tooltip({
 		style : "tooltip-demo-style-2"
 	});
 &lt;/script>
