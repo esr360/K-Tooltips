@@ -23,8 +23,6 @@
 				
 				$(this).append(
 					$("<div class='tooltip-wrapper-" + $position + "-" + $style + "'><div class='tooltip-content'>"+ $content +"</div></div>")
-				).wrapAll(
-					'<div class="tooltip-container"/>'
 				);
 				
 			});

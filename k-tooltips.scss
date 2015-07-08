@@ -108,10 +108,12 @@ $tooltip-positions: (
 //-----------------------------------------------------------------
 
 [data-tooltip] {	
+		
+	position: relative;
+	cursor: pointer;
 	
-	@at-root .tooltip-container & {		
-		position: relative;
-		cursor: pointer;
+	@at-root .inline-tooltip {
+		display: inline-block;
 	}
 	
 	@at-root [class*="tooltip-wrapper"] {
@@ -151,6 +153,11 @@ $tooltip-positions: (
 		
 		// Direction Arrow
 		@include triangle-core;
+		
+		// Inline-Tooltip styles
+		.inline-tooltip & {
+			white-space: nowrap;
+		}
 		
 		// Positions
 		@each $tooltip-position in $tooltip-positions {

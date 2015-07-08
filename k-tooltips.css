@@ -1,6 +1,9 @@
-.tooltip-container [data-tooltip] {
+[data-tooltip] {
   position: relative;
   cursor: pointer;
+}
+.inline-tooltip {
+  display: inline-block;
 }
 [class*="tooltip-wrapper"] {
   text-align: center;
@@ -31,6 +34,9 @@
   position: absolute;
   width: 0;
   height: 0;
+}
+.inline-tooltip .tooltip-content {
+  white-space: nowrap;
 }
 [class*="tooltip-wrapper"][class*="-top"] .tooltip-content {
   top: -1em;
