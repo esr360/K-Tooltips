@@ -61,6 +61,7 @@ $tooltip-options: (
 	background     : rgba(0, 0, 0, 0.75),
 	border-radius  : 0.25em,
 	arrow-size     : 0.5em,
+	arrow-color    : rgba(0, 0, 0, 0.75),
 	// Typography
 	font-size      : 1em,
 	color          : white,
@@ -74,55 +75,59 @@ $tooltip-options: (
 
 _Whilst some default examples use **em**'s, you can use any unit that would normally work._
 
-##### Max Width
+##### max-width
 
 This is the maximum width your tooltip can grow to before content begins to wrap.
 
-##### Padding
+##### padding
 
 Set the padding (inner-spacing) of your custom tooltip.
 
-##### Distance
+##### distance
 
 This is the distance which your tooltip should be from the element it corresponds to. For most use cases this value should be negative, as the CSS positioning works on a left-to-right/top-to-bottom basis.
 
-##### Background
+##### background
 
 Set the base background color for your tooltip and the corresponding directional-arrow.
 
-##### Border Radius
+##### border-radius
 
 Set the radius of your tooltip's border. To disable the border, set this to **0**.
 
-##### Arrow Size
+##### arrow-size
 
 This is the size of the directional arrow for your tooltip.
 
-##### Font Size
+##### arrow-color
+			
+Set the color for the tooltip's directional arrow - generally this should be the same color as the tooltip's background.
+
+##### font-size
 
 Set your tooltip's default font-size.
 
-##### Color
+##### color
 
 Set your tooltip's default text color.
 
-##### Text Transform
+##### text-transform
 
 Set your tooltip's default text-transform property.
 
-##### Font Weight
+##### font-weight
 
 Set your tooltip's default font weight.
 
-##### Transition
+##### transition
 
 Set the animation speed at which your tooltip should fade in. To disable animations set this value to **0s**.
 
-##### Z-Index
+##### z-Index
 
 Set the z-index for your tooltip. This should generally be a fairly large number to ensure it does not render underneath any element.
 
-#### Tooltip Init
+#### tooltip-init
 
 You need to call the **tooltip** function on your element:
 
