@@ -58,10 +58,10 @@ $tooltip-options: (
 	max-width      : 500px,
 	padding        : 1em,
 	distance       : -1em,
-	background     : rgba(0, 0, 0, 0.75),
+	background     : rgba(black, 0.75),
 	border-radius  : 0.25em,
 	arrow-size     : 0.5em,
-	arrow-color    : rgba(0, 0, 0, 0.75),
+	arrow-color    : rgba(black, 0.75),
 	// Typography
 	font-size      : 1em,
 	color          : white,
