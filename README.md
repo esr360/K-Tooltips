@@ -2,7 +2,7 @@
 
 ### K-Tooltips - A simple & lightweight tooltip solution.
 
-[View demo page for live examples](https://github.com/esr360/K-Tooltips/)
+> [View demo page for live examples](http://esr360.github.io/K-Tooltips/)
 
 ## Getting Started
 
@@ -52,7 +52,7 @@ To create a tooltip, your element needs the `data-tooltip` **data-attribute**. T
 
 The above example uses the default styles as defined in **k-tooltips.scss**. Change these values to your liking to style your default tooltip.
 
-```css
+```scss
 $tooltip-options: (
 	// Size & Appearance
 	max-width      : 500px,
