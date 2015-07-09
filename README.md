@@ -16,7 +16,7 @@ You can still use the default out-the-box options if you're not using Sass.
 ### Bower Installation
 
 ```html
-bower install k-tooltips
+bower install K-Tooltips
 ```
 
 #### Load the Assets
