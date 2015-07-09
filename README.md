@@ -13,7 +13,7 @@ Thanks for checking out K-Tooltips! Getting started is easy, but before you begi
 
 You can still use the default out-the-box options if you're not using Sass.
 
-### Bower Installation
+##### Bower Installation
 
 ```html
 bower install K-Tooltips
