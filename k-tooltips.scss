@@ -167,7 +167,7 @@ $tooltip-positions: (
         }
 		
 		// Show when parent component is touched
-        [data-tooltip]:focus & {
+        [data-tooltip]:active & {
 			opacity: 1;
 			visibility: visible;
         }
