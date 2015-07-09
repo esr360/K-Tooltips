@@ -21,6 +21,8 @@
 				var $position = options.position;		
 				var $style = options.style;
 				
+				$(this).attr("ontouchstart", " ");
+				
 				$(this).append(
 					$("<div class='tooltip-wrapper-" + $position + "-" + $style + "'><div class='tooltip-content'>"+ $content +"</div></div>")
 				);
