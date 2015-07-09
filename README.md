@@ -13,6 +13,12 @@ Thanks for checking out K-Tooltips! Getting started is easy, but before you begi
 
 You can still use the default out-the-box options if you're not using Sass.
 
+##### Bower Installation
+
+```html
+bower install K-Tooltips
+```
+
 #### Load the Assets
 
 ```html
@@ -127,7 +133,7 @@ Set the animation speed at which your tooltip should fade in. To disable animati
 
 Set the z-index for your tooltip. This should generally be a fairly large number to ensure it does not render underneath any element.
 
-#### tooltip-init
+#### Tooltip Init
 
 You need to call the **tooltip** function on your element:
 
