@@ -145,17 +145,17 @@ $tooltip-positions: (
 		opacity: 0;
 		visibility: hidden;
 		
-        // Show when parent component is hovered
-        [data-tooltip]:hover & {
+		// Show when parent component is hovered
+		[data-tooltip]:hover & {
 			opacity: 1;
 			visibility: visible;
-        }
+		}
 		
-        // Show when parent component is touched
-        [data-tooltip]:active & {
+		// Show when parent component is touched
+		[data-tooltip]:active & {
 			opacity: 1;
 			visibility: visible;
-        }
+		}
 		
 		// Direction Arrow
 		@include triangle-core;
