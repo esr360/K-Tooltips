@@ -159,9 +159,10 @@ $tooltip-positions: (
 		// Hide by default
 		opacity: 0;
 		visibility: hidden;
-		
-		// Show when parent component is hovered
-        [data-tooltip]:hover & {
+				
+		// Show when parent component is hovered/touched
+        [data-tooltip]:hover &
+        [data-tooltip]:focus &, {
 			opacity: 1;
 			visibility: visible;
         }

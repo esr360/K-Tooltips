@@ -25,7 +25,8 @@
   opacity: 0;
   visibility: hidden;
 }
-[data-tooltip]:hover .tooltip-content {
+[data-tooltip]:hover .tooltip-content
+[data-tooltip]:focus .tooltip-content {
   opacity: 1;
   visibility: visible;
 }
